@@ -1,0 +1,7 @@
+document.getElementById('year').textContent=new Date().getFullYear();const m=document.querySelector('.menu'),n=document.querySelector('#navlinks');m.addEventListener('click',()=>{const open=n.classList.toggle('open');m.setAttribute('aria-expanded',String(open));});n.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{n.classList.remove('open');m.setAttribute('aria-expanded','false')}));document.getElementById('load-map').addEventListener('click',()=>{const map=document.getElementById('map');const iframe=document.createElement('iframe');iframe.title='Karte: Binzengrün 6, 79114 Freiburg';iframe.loading='lazy';iframe.referrerPolicy='no-referrer';iframe.src='https://www.openstreetmap.org/export/embed.html?bbox=7.794%2C47.986%2C7.822%2C48.005&layer=mapnik';map.replaceChildren(iframe);});
+// Reveal only below-the-fold content; avoid hiding anything when JS is unavailable.
+if('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+ const targets=document.querySelectorAll('.intro-grid,.section-head,.service,.feature-photo,.feature-text,.about-copy,.about-photo,.steps>div,.showcase>div,.showcase>img,.contact-grid>div');
+ const observer=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('is-visible');observer.unobserve(entry.target)}})},{threshold:.08,rootMargin:'0px 0px 30px 0px'});
+ targets.forEach(el=>{el.classList.add('reveal-ready');observer.observe(el)});
+}
